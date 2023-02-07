@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 145505897}
   - component: {fileID: 145505898}
   m_Layer: 0
-  m_Name: 2
+  m_Name: PieceRope (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,9 +226,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &145505898
 HingeJoint2D:
@@ -244,16 +244,16 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 3.0000005, y: -0.000000020174493}
+  m_Anchor: {x: -1.71, y: 0}
+  m_ConnectedAnchor: {x: 1.2900003, y: -0.000000020174493}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: -180
+    m_UpperAngle: 180
 --- !u!1 &264789217
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 264789218}
   - component: {fileID: 264789219}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 652181350}
   - component: {fileID: 652181351}
   m_Layer: 0
-  m_Name: 3
+  m_Name: PieceRope (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,9 +525,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &652181351
 HingeJoint2D:
@@ -543,16 +543,16 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 2.9999993, y: -0.000000020174484}
+  m_Anchor: {x: -1.56, y: 0}
+  m_ConnectedAnchor: {x: 1.4399995, y: -0.000000020174486}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: -180
+    m_UpperAngle: 180
 --- !u!1 &961397277
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 961397281}
   - component: {fileID: 961397282}
   m_Layer: 0
-  m_Name: 1
+  m_Name: PieceRope (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -656,9 +656,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &961397282
 HingeJoint2D:
@@ -674,16 +674,16 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: -0.79999995}
+  m_Anchor: {x: -1.46, y: 0}
+  m_ConnectedAnchor: {x: -0.000000012763729, y: -0.5079999}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: -180
+    m_UpperAngle: 180
 --- !u!1 &1201678960
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 1440055254}
   - component: {fileID: 1440055255}
   m_Layer: 0
-  m_Name: 5
+  m_Name: PieceRope (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -941,9 +941,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &1440055255
 HingeJoint2D:
@@ -959,16 +959,16 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 2.9999993, y: -0.000000020174488}
+  m_Anchor: {x: -1.6, y: 0}
+  m_ConnectedAnchor: {x: 1.3999993, y: -0.000000020174488}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: -180
+    m_UpperAngle: 180
 --- !u!1 &1450454660
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 1450454661}
   - component: {fileID: 1450454664}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Rope Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,7 +1238,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0.8166651, y: 0.0000000074887785}
   m_AutoConfigureDistance: 0
-  m_Distance: 1.2299998
+  m_Distance: 1.0666667
   m_MaxDistanceOnly: 1
 --- !u!1 &1781575600
 GameObject:
@@ -1251,7 +1251,7 @@ GameObject:
   - component: {fileID: 1781575601}
   - component: {fileID: 1781575602}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: Right Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 1915593729}
   - component: {fileID: 1915593730}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Left Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1421,7 +1421,7 @@ GameObject:
   - component: {fileID: 1949286021}
   - component: {fileID: 1949286022}
   m_Layer: 0
-  m_Name: 4
+  m_Name: PieceRope (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1511,9 +1511,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!233 &1949286022
 HingeJoint2D:
@@ -1529,13 +1529,13 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 2.9999995, y: -0.000000020174486}
+  m_Anchor: {x: -1.64, y: 0}
+  m_ConnectedAnchor: {x: 1.3599993, y: -0.000000020174486}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: -180
+    m_UpperAngle: 180
