@@ -16,6 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _playerBody.AddForce(transform.right * _thrust);
+        _playerBody.AddForce(transform.right * -1 * _thrust);
     }
 }
