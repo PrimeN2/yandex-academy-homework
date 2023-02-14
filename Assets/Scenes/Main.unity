@@ -1242,7 +1242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a5d55526904dc43ba02c07952ce063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thrust: 200
+  _playerJointsHandler: {fileID: 1604733005}
+  _swingForce: 2
+  _initialThrust: 200
 --- !u!233 &1604733004
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1279,6 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e673e28ec35a43ae55ec3fc2107c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentConnectedBody: {fileID: 1450454662}
 --- !u!1 &1781575600
 GameObject:
   m_ObjectHideFlags: 0
