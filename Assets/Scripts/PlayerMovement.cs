@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _initialThrust;
 
 	private Rigidbody2D _playerRigidbody;
-	private Vector2 currentRopePosition;
+
+	private Vector2 _currentRopePosition;
 	private float _lastPositionX;
 	private bool _isSwinging = false;
 
@@ -18,15 +19,10 @@ public class PlayerMovement : MonoBehaviour
         _playerRigidbody = GetComponent<Rigidbody2D>();
 	}
 
-    private void Start()
-    {
-		
-	}
-
 	public void StartSwinging(Vector2 ropePosition)
 	{
 		_playerRigidbody.AddForce(transform.right * _initialThrust);
-		currentRopePosition = ropePosition;
+		_currentRopePosition = ropePosition;
 		_isSwinging = true;
 	}
 
@@ -40,26 +36,42 @@ public class PlayerMovement : MonoBehaviour
 		if (!_isSwinging)
 			return;
 
-		Vector2 playerToHookDirection = currentRopePosition - ((Vector2)transform.position).normalized;
+		_playerRigidbody.AddForce(CalculatePerpedndicularPosition() * _swingForce);
+	}
 
-		if (_lastPositionX < currentRopePosition.x &&
-			transform.position.x > currentRopePosition.x &&
-			_playerRigidbody.velocity.x < _swingVelocityThreshold)
+	private Vector2 CalculatePerpedndicularPosition()
+	{
+		Vector2 playerToHookDirection = _currentRopePosition - ((Vector2)transform.position).normalized;
+
+		if (HasJustCrossedCentreToRight() && CanIncreasePositiveVelocity())
 		{
 			Vector2 perpendicularDirection = new Vector2(playerToHookDirection.y, -playerToHookDirection.x);
 			Vector2 rightPerpendicularPosition = (Vector2)transform.position + perpendicularDirection * 2f;
 
-			_playerRigidbody.AddForce(rightPerpendicularPosition * _swingForce);
+			return rightPerpendicularPosition;
 		}
-		else if (_lastPositionX > currentRopePosition.x &&
-			transform.position.x < currentRopePosition.x &&
-			_playerRigidbody.velocity.x > -_swingVelocityThreshold)
+		else if (HasJustCrossedCentreToLeft() && CanIncreaseNegativeVelocity())
 		{
 			Vector2 perpendicularDirection = new Vector2(-playerToHookDirection.y, playerToHookDirection.x);
 			Vector2 leftPerpendicularPosition = (Vector2)transform.position - perpendicularDirection * -2f;
 
-			_playerRigidbody.AddForce(leftPerpendicularPosition * _swingForce);
+			return leftPerpendicularPosition;
 		}
+
 		_lastPositionX = transform.position.x;
+		return Vector2.zero;
 	}
+
+	private bool HasJustCrossedCentreToRight() =>
+		_lastPositionX < _currentRopePosition.x && transform.position.x > _currentRopePosition.x;
+
+	private bool HasJustCrossedCentreToLeft() =>
+		_lastPositionX > _currentRopePosition.x && transform.position.x < _currentRopePosition.x;
+
+	private bool CanIncreasePositiveVelocity() =>
+		_playerRigidbody.velocity.x < _swingVelocityThreshold;
+	private bool CanIncreaseNegativeVelocity() =>
+		_playerRigidbody.velocity.x > -_swingVelocityThreshold;
+
+
 }

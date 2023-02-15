@@ -5,13 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Joint2D), typeof(PlayerMovement), typeof(Rigidbody2D))]
 public class PlayerJointsHandler : MonoBehaviour
 {
-	public bool IsTied { get; private set; }
-
 	[SerializeField] private Rope _currentRope;
 
 	private PlayerMovement _playerMovement;
+
 	private Joint2D _playerJoint;
+
 	private Rigidbody2D _playerRigidbody;
+
+	public bool IsTied { get; private set; }
 
 	private void Awake()
 	{
