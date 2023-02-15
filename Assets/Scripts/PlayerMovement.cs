@@ -20,11 +20,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-		_playerRigidbody.AddForce(transform.right * _initialThrust);
+		
 	}
 
 	public void StartSwinging(Vector2 ropePosition)
 	{
+		_playerRigidbody.AddForce(transform.right * _initialThrust);
 		currentRopePosition = ropePosition;
 		_isSwinging = true;
 	}
