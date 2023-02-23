@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-	[SerializeField] private PlayerJointsHandler _playerJointsHandler;
+	[SerializeField] private PlayerMovement _playerMovement;
 
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
-			_playerJointsHandler.UntieCurrentJoint();
+			_playerMovement.UntieFromRope();
+		}
+		if (Input.GetKey(KeyCode.Space))
+		{
+			_playerMovement.Jump();
 		}
 	}
 }
