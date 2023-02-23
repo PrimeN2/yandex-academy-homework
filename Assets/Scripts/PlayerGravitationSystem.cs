@@ -50,12 +50,10 @@ public class PlayerGravitationSystem : MonoBehaviour
 
 	public void ApplyGravity()
 	{
-		CalculateVelocity();
-
-		SetVelocityDirection();
+		SetVelocity();
 
 		Vector2 deltaPosition = _velocity * Time.deltaTime;
-		Vector2 moveAlongGround = new Vector2(_groundNormal.y, -_groundNormal.x);
+		Vector2 moveAlongGround = GetMovementDirection();
 
 		Vector2 xMovement = moveAlongGround * deltaPosition.x;
 		Vector2 yMovement = Vector2.up * deltaPosition.y;
@@ -66,21 +64,18 @@ public class PlayerGravitationSystem : MonoBehaviour
 		MoveBy(yMovement, true);
 	}
 
-	private void CalculateVelocity()
+	private Vector2 GetMovementDirection()
 	{
-		Vector2 alongSurface = Vector2.Perpendicular(_groundNormal);
-
-		_targetVelocity = alongSurface * _speed;
-
-		_velocity += _gravityModifier * Time.deltaTime * Physics2D.gravity;
+		return new Vector2(_groundNormal.y, -_groundNormal.x);
 	}
 
-	private void SetVelocityDirection()
+	private void SetVelocity()
 	{
-		if (_groundNormal.x >= 0)
-			_velocity.x = -_targetVelocity.x;
-		else
-			_velocity.x = _targetVelocity.x;
+		_targetVelocity = _groundNormal * _speed;
+
+		_velocity += _gravityModifier * Time.deltaTime * Physics2D.gravity;
+
+		_velocity.x = _targetVelocity.x;
 	}
 
 	private void MoveBy(Vector2 move, bool yMovement)
