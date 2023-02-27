@@ -71,11 +71,14 @@ public class PlayerGravitationSystem : MonoBehaviour
 
 	private void SetVelocity()
 	{
-		_targetVelocity = _groundNormal * _speed;
+		_targetVelocity = Vector2.Perpendicular(_groundNormal) * _speed;
 
 		_velocity += _gravityModifier * Time.deltaTime * Physics2D.gravity;
 
-		_velocity.x = _targetVelocity.x;
+		if (_groundNormal.x >= 0)
+			_velocity.x = -_targetVelocity.x;
+		else
+			_velocity.x = _targetVelocity.x;
 	}
 
 	private void MoveBy(Vector2 move, bool yMovement)
