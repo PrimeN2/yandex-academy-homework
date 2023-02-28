@@ -19,9 +19,9 @@ public class Root : MonoBehaviour
     public LaserGun LaserGun => _laserGun;
     public LaserGunRollback LaserGunRollback => _laserGunRollback;
 
-    public void DisableShip()
+    public void DamageShip()
     {
-        _shipInputRouter.OnDisable();
+        _shipModel.TakeDamage(1);
     }
 
     private void Awake()
@@ -48,7 +48,7 @@ public class Root : MonoBehaviour
         _baseGun.Shot += OnShot;
         _laserGun.Shot += OnShot;
         _shipModel.Destroying += OnShipDestroying;
-    }
+	}
 
     private void OnDisable()
     {
@@ -57,7 +57,7 @@ public class Root : MonoBehaviour
         _baseGun.Shot -= OnShot;
         _laserGun.Shot -= OnShot;
         _shipModel.Destroying -= OnShipDestroying;
-    }
+	}
 
     private void Update()
     {

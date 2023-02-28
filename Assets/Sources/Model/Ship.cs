@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Asteroids.Model
 {
-    public class Ship : Transformable, IUpdatable
+    public class Ship : Transformable, IUpdatable, IDamageable
     {
         public Ship(Vector2 position, float rotation) : base(position, rotation) { }
 
@@ -12,7 +12,18 @@ namespace Asteroids.Model
         private readonly float _secondsToStop = 1f;
         private readonly float _degreesPerSecond = 180;
 
+        private int _currentHealth = 3;
+
         public Vector2 Acceleration { get; private set; }
+        public int CurrentHealth { get => _currentHealth; }
+
+		public void TakeDamage(int damage)
+        {
+            _currentHealth -= damage;
+
+            if (_currentHealth <= 0)
+                Destroy();
+        }
 
         public void Accelerate(float deltaTime)
         {
@@ -49,5 +60,5 @@ namespace Asteroids.Model
 
             MoveTo(nextPosition);
         }
-    }
+	}
 }
