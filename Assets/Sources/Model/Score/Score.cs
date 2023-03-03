@@ -20,7 +20,7 @@
                 AccumulatedScore += 10;
             }
 
-            public void Visit(Nlo nlo)
+            public void Visit(UFO nlo)
             {
                 AccumulatedScore += 20;
             }

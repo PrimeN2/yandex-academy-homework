@@ -24,10 +24,17 @@ public class SpawnExample : MonoBehaviour
     {
         float chance = Random.Range(0, 100);
 
-        if (chance < 20)
+        if (chance < 70)
         {
-            _factory.CreateNlo(new Nlo(_init.Ship, GetRandomPositionOutsideScreen(), Config.NloSpeed));
-        }
+            int currentTeam = IsEven() ? 0 : 1;
+
+			UFO currentUFO = new UFO(new UFOCollisionHandler(), _init.Ship, 
+                GetRandomPositionOutsideScreen(), Config.NloSpeed, currentTeam);
+
+            GlobalTeamsLists.Teams[currentTeam].Add(currentUFO);
+
+			_factory.CreateUFO(currentUFO);
+		}
         else
         {
             Vector2 position = GetRandomPositionOutsideScreen();
@@ -46,4 +53,7 @@ public class SpawnExample : MonoBehaviour
     {
         return (new Vector2(Random.value, Random.value) - postion).normalized;
     }
+
+    private bool IsEven() =>
+        GlobalTeamsLists.TotalAmount % 2 == 0;
 }

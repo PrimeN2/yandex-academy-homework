@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Asteroids.Model;
-using System;
 
 public class PresentersFactory : MonoBehaviour
 {
@@ -25,9 +24,9 @@ public class PresentersFactory : MonoBehaviour
             CreatePresenter(_asteroidPartTemplate, asteroid.Model.CreatePart());
     }
 
-    public void CreateNlo(Nlo nlo)
+    public void CreateUFO(UFO ufo)
     {
-        CreatePresenter(_nloTemplate, nlo);
+        CreatePresenter(_nloTemplate, ufo);
     }
 
     public void CreateAsteroid(Asteroid asteroid)
