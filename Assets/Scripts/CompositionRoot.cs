@@ -1,18 +1,17 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Unity.VisualScripting;
+using UnityEngine;
+using Zenject;
 
-public class CompositionRoot : MonoBehaviour
+public class CompositionRoot : MonoInstaller
 {
-	[SerializeField] private CoinsPresenter _coinsPresenter;
-	[SerializeField] private Text _coinsLabel;
-	[SerializeField] private Animator _coinsAnimator;
-
 	private Wallet _wallet;
 	private ISaveSystem _saveSystem;
 
-	private void Awake()
+	public override void InstallBindings()
 	{
-		Bootstrap();
+		BindSaveSystem();
+
+		BindEconomicServices();
 	}
 
 	private void OnEnable()
@@ -25,20 +24,23 @@ public class CompositionRoot : MonoBehaviour
 		_wallet.OnBalanceChanged -= _saveSystem.Save;
 	}
 
-	public void Bootstrap()
-	{
-		SetSaveSystem();
-		SetEconomics();
-	}
-
-	private void SetEconomics()
-	{
-		_wallet = new Wallet(_saveSystem.LoadBalance());
-		_coinsPresenter.Construct(_wallet, _coinsLabel, _coinsAnimator);
-	}
-
-	private void SetSaveSystem()
+	private void BindSaveSystem()
 	{
 		_saveSystem = new PlayerPrefsSaveSystem();
+
+		Container
+			.Bind<ISaveSystem>()
+			.FromInstance(_saveSystem)
+			.AsSingle();
+	}
+
+	private void BindEconomicServices()
+	{
+		_wallet = new Wallet(_saveSystem.LoadBalance());
+
+		Container
+			.Bind<Wallet>()
+			.FromInstance(_wallet)
+			.AsSingle();
 	}
 }

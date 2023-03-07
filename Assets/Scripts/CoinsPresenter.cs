@@ -1,19 +1,18 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class CoinsPresenter : Presenter
 {
 	private const string OnPickupCoinTrigger = "OnPickupCoin";
 
-	private Wallet _model; 
+	private Wallet _model;
 
-	public void Construct(Wallet model, Text render, Animator animator)
+	[Inject]
+	private void Construct(Wallet model)
 	{
 		_model = model;
-
-		_render = render;
-		_animator = animator;
 	}
 
 	private void OnTriggerEnter(Collider other)
