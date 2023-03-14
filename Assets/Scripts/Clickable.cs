@@ -1,21 +1,26 @@
 using System.Collections;
 using UnityEngine;
 
-public class Clickable : MonoBehaviour
+public class Clickable : MonoBehaviour, IClickable
 {
-    [SerializeField] private AnimationCurve _scaleCurve;
+	[SerializeField] private Resources _resources;
+    [SerializeField] private CoinsContainer _containerPrefab;
+
+	[SerializeField] private AnimationCurve _scaleCurve;
     [SerializeField] private float _scaleTime = 0.25f;
-    [SerializeField] private HitEffect _hitEffectPrefab;
-    [SerializeField] private Resources _resources;
 
-    private int _coinsPerClick = 1;
-
-    public void Hit()
+    public void Click()
     {
-        HitEffect hitEffect = Instantiate(_hitEffectPrefab, transform.position, Quaternion.identity);
-        hitEffect.Init(_coinsPerClick);
-        _resources.CollectCoins(_coinsPerClick, transform.position);
+        CreateCoinsContainer();
         StartCoroutine(HitAnimation());
+    }
+
+    private void CreateCoinsContainer()
+    {
+        var container =
+            Instantiate(_containerPrefab, transform.position + Vector3.up, Quaternion.identity, transform);
+        container.Construct(_resources, 1, GetComponentInChildren<MeshRenderer>().material);
+        container.GetComponent<Rigidbody>().velocity += new Vector3(Random.Range(-1, 1), 2, -2);
     }
 
     private IEnumerator HitAnimation()
@@ -28,10 +33,4 @@ public class Clickable : MonoBehaviour
         }
         transform.localScale = Vector3.one;
     }
-
-    public void AddCoinsPerClick(int value)
-    {
-        _coinsPerClick += value;
-    }
-
 }
