@@ -8,8 +8,11 @@ public class Clickable : MonoBehaviour, IClickable
 
 	[SerializeField] private AnimationCurve _scaleCurve;
     [SerializeField] private float _scaleTime = 0.25f;
+	[SerializeField] private float _departureSpeed = 2;
 
-    public void Click()
+    private Transform _containersKeeper;
+
+	public void Click()
     {
         CreateCoinsContainer();
         StartCoroutine(HitAnimation());
@@ -17,10 +20,13 @@ public class Clickable : MonoBehaviour, IClickable
 
     private void CreateCoinsContainer()
     {
+        if (!_containersKeeper)
+            _containersKeeper = new GameObject("Containers Keeper").GetComponent<Transform>();
+
         var container =
-            Instantiate(_containerPrefab, transform.position + Vector3.up, Quaternion.identity, transform);
+            Instantiate(_containerPrefab, transform.position + Vector3.up, Quaternion.identity, _containersKeeper);
         container.Construct(_resources, 1, GetComponentInChildren<MeshRenderer>().material);
-        container.GetComponent<Rigidbody>().velocity += new Vector3(Random.Range(-1, 1), 2, -2);
+        container.GetComponent<Rigidbody>().velocity += new Vector3(Random.Range(-1f, 1f), 1, -1) * _departureSpeed;
     }
 
     private IEnumerator HitAnimation()
