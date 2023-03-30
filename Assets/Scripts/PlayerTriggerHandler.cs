@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerTriggerHandler : MonoBehaviour
 {
+	public event Action OnPlayerDied;
+
 	private InputHandler _inputHandler;
 
 	public void Construct(InputHandler inputHandler)
@@ -19,5 +22,7 @@ public class PlayerTriggerHandler : MonoBehaviour
 	{
 		_inputHandler.DisableHandling();
 		Destroy(gameObject);
+
+		OnPlayerDied?.Invoke();
 	}
 }

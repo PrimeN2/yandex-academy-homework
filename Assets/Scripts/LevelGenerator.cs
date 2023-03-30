@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+	public Action<int> OnScoreChanged;
+
 	[SerializeField] private Player _playerPrefab;
 	[SerializeField] private LevelSection _levelSectionPrefab;
 
@@ -14,11 +17,15 @@ public class LevelGenerator : MonoBehaviour
 
 	private List<LevelSection> _levelSections;
 
+	private int _score = 0;
+
 	public Player Player { get; set; }
 
-	public void Construct()
+	public void Construct(int score)
 	{
 		_levelSections = new List<LevelSection>();
+
+		_score = score;
 
 		BuildLevel();
 	}
@@ -36,20 +43,23 @@ public class LevelGenerator : MonoBehaviour
 		var section = Instantiate(_levelSectionPrefab, transform);
 
 		section.transform.position = position;
-		section.Construct(Player.transform, _eagleOffset + section.transform.position, _playerOffset);
+		section.Construct(
+			Player.transform, _eagleOffset + section.transform.position, _playerOffset, _sectionOffsetY);
 		section.OnSectionPassed += GenerateNewSection;
 
 		_levelSections.Add(section);
 	}
 
-	private void GenerateNewSection(LevelSection section) 
+	private void GenerateNewSection(LevelSection previousSection) 
 	{
-		_levelSections.Remove(section);
-		section.OnSectionPassed -= GenerateNewSection;
-		Destroy(section.gameObject);
+		_levelSections.Remove(previousSection);
+		previousSection.OnSectionPassed -= GenerateNewSection;
+		Destroy(previousSection.gameObject);
 
 		CreateLevelSection(
 			(_levelSections[_levelSections.Count - 1].transform.position.y - _sectionOffsetY) * Vector3.up);
+
+		OnScoreChanged?.Invoke(++_score);
 	}
 
 	private void CreatePlayer()
