@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,9 +20,9 @@ public class Bootstraper : MonoBehaviour
 		InitSaveSystem();
 
 		if (_saveSystem.HasGuideBeenPassed)
-			BootstrapGame();
-		else
 			BootstrapGuide();
+		else
+			BootstrapGame();
 	}
 	private void OnDisable()
 	{
