@@ -20,7 +20,8 @@ public class Eagle : MonoBehaviour
 
 	private int _direction;
 	private float _speed;
-	private bool _isAware = true;
+
+	public bool IsAware = true;
 
 	public void Construct(Vector2 eagleOffset, Vector2 playerOffset, float speed)
 	{
@@ -33,7 +34,7 @@ public class Eagle : MonoBehaviour
 		_playerOffset = playerOffset;
 		_speed = speed;
 
-		_isAware = true;
+		IsAware = true;
 		_direction = -1;
 
 		DefineMovement();
@@ -41,7 +42,7 @@ public class Eagle : MonoBehaviour
 
 	public void Attack(Transform target)
 	{
-		if (_isAware && !_targets.Contains(target))
+		if (IsAware && !_targets.Contains(target))
 		{
 			StopCoroutine(_movement);
 			_movement = StartCoroutine(Move(target));
@@ -72,11 +73,11 @@ public class Eagle : MonoBehaviour
 
 			if (transform.position.x > 0 && lastPosition.x - transform.position.x < 0 ||
 				transform.position.x < 0 && lastPosition.x - transform.position.x > 0)
-				_isAware = false; 
+				IsAware = false; 
 			else
-				_isAware = true;
+				IsAware = true;
 
-			_dangerSign.SetActive(_isAware);
+			_dangerSign.SetActive(IsAware);
 			lastPosition = transform.position;
 			yield return null;
 		}

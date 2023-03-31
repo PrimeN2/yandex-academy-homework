@@ -10,6 +10,8 @@ public class LevelSection : MonoBehaviour
 
 	private float _sectionYOffset;
 
+	public Eagle Eagle { get => _eagle; }
+
 	public void Construct(Transform target, Vector2 eagleOffset, Vector2 playerOffset, float sectionYOffset)
 	{
 		float eagleSpeed = Random.Range(2, 4);

@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Bootstraper : MonoBehaviour
 {
@@ -12,6 +9,8 @@ public class Bootstraper : MonoBehaviour
 	[SerializeField] private InputHandler _playerInputHandler;
 	[SerializeField] private ScoreLabel _scoreLabel;
 	[SerializeField] private Animator _restartWindow;
+	[SerializeField] private InstructionsOrder _instructions;
+	[SerializeField] private GameCycle _gameCycle;
 
 	private SaveSystem _saveSystem;
 
@@ -20,26 +19,39 @@ public class Bootstraper : MonoBehaviour
 		InitSaveSystem();
 
 		if (_saveSystem.HasGuideBeenPassed)
-			BootstrapGuide();
-		else
 			BootstrapGame();
+		else
+			BootstrapGuide();
 	}
 	private void OnDisable()
 	{
 		_levelGenerator.OnScoreChanged -= _scoreLabel.SetScore;
-		_levelGenerator.Player.TriggerHandler.OnPlayerDied -= RestartScene;
+		_levelGenerator.Player.TriggerHandler.OnPlayerDied -= Restart;
+
+//#if UNITY_EDITOR
+//		_saveSystem.DeleteSaves();
+//#endif
 	}
 
 	private void BootstrapGuide()
 	{
-		
+		GenerateLevel();
+		GenerateInstructions();
+		FollowPlayerByCamera();
+		BindPlayer();
+		BindUI();
+	}
+
+	private void GenerateInstructions()
+	{
+		var instructions = Instantiate(_instructions, transform);
+		instructions.Construct(_levelGenerator, _playerInputHandler, _gameCycle, _saveSystem);
 	}
 
 	private void InitSaveSystem()
 	{
 		_saveSystem = new SaveSystem();
 	}
-
 
 	private void BootstrapGame()
 	{
@@ -59,7 +71,7 @@ public class Bootstraper : MonoBehaviour
 	private void BindPlayer()
 	{
 		_levelGenerator.Player.Construct(_playerInputHandler);
-		_levelGenerator.Player.TriggerHandler.OnPlayerDied += RestartScene;
+		_levelGenerator.Player.TriggerHandler.OnPlayerDied += Restart;
 	}
 
 	private void BindInputHandler()
@@ -77,18 +89,11 @@ public class Bootstraper : MonoBehaviour
 		_levelGenerator.Construct(0);
 	}
 
-	private void RestartScene()
+	private void Restart()
 	{
 		_restartWindow.SetTrigger(RestartAnimation);
 
-		StartCoroutine(DelayedRestart(0.3f));
+		_gameCycle.Restart(0.3f);
 
-	}
-
-	private IEnumerator DelayedRestart(float time)
-	{
-		yield return new WaitForSeconds(time);
-
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

@@ -157,6 +157,9 @@ MonoBehaviour:
   _playerInputHandler: {fileID: 725692417}
   _scoreLabel: {fileID: 908418062}
   _restartWindow: {fileID: 2099713950}
+  _instructions: {fileID: 725653254701763474, guid: 5dca83f517a3a024595990c339894b6f,
+    type: 3}
+  _gameCycle: {fileID: 972743110}
 --- !u!4 &5329733
 Transform:
   m_ObjectHideFlags: 0
@@ -223,7 +226,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100
+  far clip plane: 1000
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -473,8 +476,9 @@ GameObject:
   m_Component:
   - component: {fileID: 972743108}
   - component: {fileID: 972743107}
+  - component: {fileID: 972743110}
   m_Layer: 0
-  m_Name: LevelGenerator
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,6 +519,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972743110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972743106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb30f6bad2c138439cbcc4d31c4c1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1594988274
 GameObject:
   m_ObjectHideFlags: 0

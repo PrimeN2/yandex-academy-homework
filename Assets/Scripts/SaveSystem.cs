@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
-internal class SaveSystem
+public class SaveSystem
 {
 	private const string HasGuideBeenPassedSave = "HasGuideBeenPassed";
 
-	public bool HasGuideBeenPassed { get => PlayerPrefs.GetInt(HasGuideBeenPassedSave, 0) == 1; }
+	public bool HasGuideBeenPassed { get => PlayerPrefs.GetInt(HasGuideBeenPassedSave, 0) != 0; }
 
-#if UNITY_EDITOR
-	private void OnDisable()
+	public void PassGuide()
+	{
+		PlayerPrefs.SetInt(HasGuideBeenPassedSave, 1);
+	}
+
+	public void DeleteSaves()
 	{
 		PlayerPrefs.SetInt(HasGuideBeenPassedSave, 0);
 	}
-#endif
 }

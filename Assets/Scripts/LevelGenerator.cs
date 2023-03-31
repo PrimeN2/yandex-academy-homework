@@ -20,10 +20,14 @@ public class LevelGenerator : MonoBehaviour
 	private int _score = 0;
 
 	public Player Player { get; set; }
+	public LevelSection FirstSection { get => _levelSections[0]; }
+
+	public bool HasPassedFirstSection { get; private set; }
 
 	public void Construct(int score)
 	{
 		_levelSections = new List<LevelSection>();
+		HasPassedFirstSection = false;
 
 		_score = score;
 
@@ -52,6 +56,8 @@ public class LevelGenerator : MonoBehaviour
 
 	private void GenerateNewSection(LevelSection previousSection) 
 	{
+		HasPassedFirstSection = true;
+
 		_levelSections.Remove(previousSection);
 		previousSection.OnSectionPassed -= GenerateNewSection;
 		Destroy(previousSection.gameObject);
